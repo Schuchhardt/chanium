@@ -1,26 +1,74 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ch-bg: #050505;
+  --color-ch-fg: #F0F0F0;
+  --color-ch-accent: #4F7BFF;
+  --color-ch-accent-light: #A9C0FF;
+  --color-ch-accent-soft: #9FB6FF;
+  --color-ch-muted: #8A8F98;
+  --color-ch-dim: #555;
+  --color-ch-card: #0a0a0a;
+  --color-ch-card-hover: #0f0f12;
+  --color-ch-title: #F4F5F7;
+  --color-ch-number: #3f4650;
+  --color-ch-arrow: #5a626d;
+  --color-ch-marquee: #56606e;
+  --color-ch-label: #C8CDD2;
+  --color-ch-stat-label: #6a727d;
+  --color-ch-stroke: #2a2d34;
+  --color-ch-big-num: #15171c;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #050505;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #4F7BFF;
+  color: #FFFFFF;
+}
+
+input, textarea, select, button {
+  font-family: inherit;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body { cursor: none; }
+}
+
+@keyframes chMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes chGrain {
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -5%); }
+  20% { transform: translate(-10%, 5%); }
+  30% { transform: translate(5%, -10%); }
+  40% { transform: translate(-5%, 12%); }
+  50% { transform: translate(-12%, 5%); }
+  60% { transform: translate(8%, 3%); }
+  70% { transform: translate(3%, 12%); }
+  80% { transform: translate(-8%, -8%); }
+  90% { transform: translate(5%, 8%); }
+  100% { transform: translate(0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain-overlay { animation: none !important; }
+  .marquee-track { animation: none !important; }
 }
