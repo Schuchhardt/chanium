@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback, type FormEvent } from "react";
 import Image from "next/image";
+import Lightfall from "./components/Lightfall";
 import { dict, type Lang, type DictKey } from "./i18n";
 
 function t(lang: Lang, key: DictKey) {
@@ -516,13 +517,26 @@ export default function Home() {
           className="relative min-h-screen flex flex-col justify-center overflow-hidden"
           style={{ padding: "140px clamp(20px,5vw,72px) 0" }}
         >
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(58% 48% at 50% 36%, rgba(79,123,255,0.07), rgba(5,5,5,0) 72%)",
-            }}
-          />
+          <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 0 }}>
+            <Lightfall
+              colors={["#4F7BFF", "#1a3a8f", "#7aa0ff"]}
+              backgroundColor="#050510"
+              speed={0.3}
+              streakCount={6}
+              streakWidth={0.8}
+              streakLength={1.2}
+              glow={0.6}
+              density={0.4}
+              twinkle={0.8}
+              zoom={3}
+              backgroundGlow={0.3}
+              opacity={0.45}
+              mouseInteraction={true}
+              mouseStrength={0.4}
+              mouseRadius={0.8}
+              mixBlendMode="screen"
+            />
+          </div>
           <Image
             src="/assets/chanium-icon.png"
             alt=""
@@ -906,30 +920,36 @@ export default function Home() {
                     badge: "● Live · depando.cl",
                     badgeColor: "#A9C0FF",
                     badgeBorder: "rgba(79,123,255,0.35)",
+                    href: "https://depando.cl",
                   },
                   {
                     num: "02",
                     name: "AI Tickets",
                     desc: "p2.desc" as DictKey,
-                    badge: "○ In production",
-                    badgeColor: "#8A8F98",
-                    badgeBorder: "rgba(255,255,255,0.12)",
+                    badge: "● Live · aitickets.cl",
+                    badgeColor: "#A9C0FF",
+                    badgeBorder: "rgba(79,123,255,0.35)",
+                    href: "https://aitickets.cl",
                   },
                   {
                     num: "03",
                     name: "Kefy",
                     desc: "p3.desc" as DictKey,
-                    badge: "○ Building",
+                    badge: "○ Building · kefy.app",
                     badgeColor: "#8A8F98",
                     badgeBorder: "rgba(255,255,255,0.12)",
+                    href: "https://kefy.app",
                   },
                 ] as const
               ).map((product) => (
-                <article
+                <a
+                  href={product.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   key={product.num}
                   data-product
                   data-cursor="open"
-                  className="flex-none flex flex-col justify-between cursor-pointer relative overflow-hidden"
+                  className="flex-none flex flex-col justify-between cursor-pointer relative overflow-hidden no-underline"
                   style={{
                     width: "min(86vw,500px)",
                     height: "62vh",
@@ -990,7 +1010,7 @@ export default function Home() {
                       {t(lang, product.desc)}
                     </p>
                   </div>
-                </article>
+                </a>
               ))}
               <div
                 className="flex-none"
@@ -1430,7 +1450,7 @@ export default function Home() {
                 color: "#555",
               }}
             >
-              Chanium LLC — Wyoming, USA
+              Chanium LLC
             </span>
             <a
               href="mailto:hello@chanium.com"
