@@ -21,8 +21,8 @@ export default function SectionGlow({
         transform: inverted ? "rotate(180deg)" : undefined,
       }}
     >
-      {/* Primary orb — large, slow drift */}
       <div
+        className="glow-orb-1"
         style={{
           position: "absolute",
           width: `${70 * scale}%`,
@@ -36,8 +36,8 @@ export default function SectionGlow({
           animation: "glowOrb1 8s ease-in-out infinite alternate",
         }}
       />
-      {/* Secondary orb — offset, counter-movement */}
       <div
+        className="glow-orb-2"
         style={{
           position: "absolute",
           width: `${55 * scale}%`,
@@ -51,8 +51,8 @@ export default function SectionGlow({
           animation: "glowOrb2 10s ease-in-out infinite alternate",
         }}
       />
-      {/* Tertiary accent — small, faster pulse */}
       <div
+        className="glow-orb-3"
         style={{
           position: "absolute",
           width: `${35 * scale}%`,
@@ -66,44 +66,6 @@ export default function SectionGlow({
           animation: "glowOrb3 6s ease-in-out infinite alternate",
         }}
       />
-      <style jsx>{`
-        @keyframes glowOrb1 {
-          0% {
-            transform: translate(0, 0) scale(1);
-          }
-          50% {
-            transform: translate(8%, 12%) scale(1.15);
-          }
-          100% {
-            transform: translate(-5%, 8%) scale(0.95);
-          }
-        }
-        @keyframes glowOrb2 {
-          0% {
-            transform: translate(0, 0) scale(1);
-          }
-          50% {
-            transform: translate(-12%, -8%) scale(1.1);
-          }
-          100% {
-            transform: translate(6%, -14%) scale(1.05);
-          }
-        }
-        @keyframes glowOrb3 {
-          0% {
-            transform: translate(0, 0) scale(0.9);
-            opacity: 0.4;
-          }
-          50% {
-            transform: translate(15%, -10%) scale(1.2);
-            opacity: 1;
-          }
-          100% {
-            transform: translate(-10%, 12%) scale(0.85);
-            opacity: 0.6;
-          }
-        }
-      `}</style>
     </div>
   );
 }
