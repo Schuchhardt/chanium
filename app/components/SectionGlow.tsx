@@ -11,6 +11,8 @@ export default function SectionGlow({
   inverted = false,
   emphasis = false,
 }: Props) {
+  const scale = emphasis ? 1.4 : 1;
+
   return (
     <div
       className="absolute inset-0 pointer-events-none overflow-hidden"
@@ -19,44 +21,86 @@ export default function SectionGlow({
         transform: inverted ? "rotate(180deg)" : undefined,
       }}
     >
+      {/* Primary orb — large, slow drift */}
       <div
-        className="section-glow-orb"
         style={{
           position: "absolute",
-          width: "120%",
-          height: "120%",
-          top: "-10%",
+          width: `${70 * scale}%`,
+          height: `${70 * scale}%`,
+          top: "-15%",
           left: "-10%",
           opacity,
-          background: emphasis
-            ? "radial-gradient(ellipse 60% 50% at 50% 40%, rgba(79,123,255,0.4) 0%, rgba(26,58,143,0.15) 40%, transparent 70%)"
-            : "radial-gradient(ellipse 70% 60% at 30% 30%, rgba(79,123,255,0.25) 0%, transparent 50%), radial-gradient(ellipse 50% 40% at 70% 70%, rgba(26,58,143,0.2) 0%, transparent 50%)",
-          animation: "sectionGlowDrift 12s ease-in-out infinite alternate",
+          borderRadius: "50%",
+          background: `radial-gradient(circle, rgba(79,123,255,${emphasis ? 0.55 : 0.4}) 0%, rgba(26,58,143,${emphasis ? 0.2 : 0.12}) 40%, transparent 70%)`,
+          filter: "blur(60px)",
+          animation: "glowOrb1 8s ease-in-out infinite alternate",
         }}
       />
-      {emphasis && (
-        <div
-          className="section-glow-orb-secondary"
-          style={{
-            position: "absolute",
-            width: "80%",
-            height: "80%",
-            bottom: "-20%",
-            right: "-10%",
-            opacity: opacity * 0.6,
-            background:
-              "radial-gradient(ellipse 60% 50% at 60% 60%, rgba(122,160,255,0.3) 0%, transparent 60%)",
-            animation: "sectionGlowDrift 15s ease-in-out infinite alternate-reverse",
-          }}
-        />
-      )}
+      {/* Secondary orb — offset, counter-movement */}
+      <div
+        style={{
+          position: "absolute",
+          width: `${55 * scale}%`,
+          height: `${55 * scale}%`,
+          bottom: "-10%",
+          right: "-15%",
+          opacity: opacity * 0.7,
+          borderRadius: "50%",
+          background: `radial-gradient(circle, rgba(122,160,255,${emphasis ? 0.45 : 0.3}) 0%, rgba(79,123,255,0.08) 50%, transparent 70%)`,
+          filter: "blur(50px)",
+          animation: "glowOrb2 10s ease-in-out infinite alternate",
+        }}
+      />
+      {/* Tertiary accent — small, faster pulse */}
+      <div
+        style={{
+          position: "absolute",
+          width: `${35 * scale}%`,
+          height: `${35 * scale}%`,
+          top: "30%",
+          left: "40%",
+          opacity: opacity * 0.5,
+          borderRadius: "50%",
+          background: `radial-gradient(circle, rgba(79,123,255,${emphasis ? 0.35 : 0.2}) 0%, transparent 60%)`,
+          filter: "blur(40px)",
+          animation: "glowOrb3 6s ease-in-out infinite alternate",
+        }}
+      />
       <style jsx>{`
-        @keyframes sectionGlowDrift {
+        @keyframes glowOrb1 {
           0% {
             transform: translate(0, 0) scale(1);
           }
+          50% {
+            transform: translate(8%, 12%) scale(1.15);
+          }
           100% {
-            transform: translate(3%, 5%) scale(1.05);
+            transform: translate(-5%, 8%) scale(0.95);
+          }
+        }
+        @keyframes glowOrb2 {
+          0% {
+            transform: translate(0, 0) scale(1);
+          }
+          50% {
+            transform: translate(-12%, -8%) scale(1.1);
+          }
+          100% {
+            transform: translate(6%, -14%) scale(1.05);
+          }
+        }
+        @keyframes glowOrb3 {
+          0% {
+            transform: translate(0, 0) scale(0.9);
+            opacity: 0.4;
+          }
+          50% {
+            transform: translate(15%, -10%) scale(1.2);
+            opacity: 1;
+          }
+          100% {
+            transform: translate(-10%, 12%) scale(0.85);
+            opacity: 0.6;
           }
         }
       `}</style>
