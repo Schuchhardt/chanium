@@ -11,7 +11,7 @@ export default function SectionGlow({
   inverted = false,
   emphasis = false,
 }: Props) {
-  const scale = emphasis ? 1.4 : 1;
+  const base = emphasis ? 0.6 : 0.35;
 
   return (
     <div
@@ -22,48 +22,41 @@ export default function SectionGlow({
       }}
     >
       <div
-        className="glow-orb-1"
+        className="glow-aurora"
         style={{
           position: "absolute",
-          width: `${70 * scale}%`,
-          height: `${70 * scale}%`,
-          top: "-15%",
-          left: "-10%",
+          inset: "-50%",
           opacity,
-          borderRadius: "50%",
-          background: `radial-gradient(circle, rgba(79,123,255,${emphasis ? 0.55 : 0.4}) 0%, rgba(26,58,143,${emphasis ? 0.2 : 0.12}) 40%, transparent 70%)`,
-          filter: "blur(60px)",
-          animation: "glowOrb1 8s ease-in-out infinite alternate",
+          background: `
+            conic-gradient(
+              from 0deg at 50% 50%,
+              rgba(79,123,255,${base}) 0deg,
+              transparent 60deg,
+              rgba(26,58,143,${base * 0.7}) 120deg,
+              transparent 180deg,
+              rgba(122,160,255,${base * 0.8}) 240deg,
+              transparent 300deg,
+              rgba(79,123,255,${base}) 360deg
+            )
+          `,
+          filter: emphasis ? "blur(80px)" : "blur(100px)",
+          animation: "auroraRotate 20s linear infinite",
         }}
       />
       <div
-        className="glow-orb-2"
+        className="glow-pulse"
         style={{
           position: "absolute",
-          width: `${55 * scale}%`,
-          height: `${55 * scale}%`,
-          bottom: "-10%",
-          right: "-15%",
-          opacity: opacity * 0.7,
+          width: emphasis ? "80%" : "60%",
+          height: emphasis ? "80%" : "60%",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          opacity: opacity * 0.6,
           borderRadius: "50%",
-          background: `radial-gradient(circle, rgba(122,160,255,${emphasis ? 0.45 : 0.3}) 0%, rgba(79,123,255,0.08) 50%, transparent 70%)`,
-          filter: "blur(50px)",
-          animation: "glowOrb2 10s ease-in-out infinite alternate",
-        }}
-      />
-      <div
-        className="glow-orb-3"
-        style={{
-          position: "absolute",
-          width: `${35 * scale}%`,
-          height: `${35 * scale}%`,
-          top: "30%",
-          left: "40%",
-          opacity: opacity * 0.5,
-          borderRadius: "50%",
-          background: `radial-gradient(circle, rgba(79,123,255,${emphasis ? 0.35 : 0.2}) 0%, transparent 60%)`,
+          background: `radial-gradient(circle, rgba(79,123,255,${emphasis ? 0.4 : 0.25}) 0%, transparent 70%)`,
           filter: "blur(40px)",
-          animation: "glowOrb3 6s ease-in-out infinite alternate",
+          animation: "glowPulse 4s ease-in-out infinite alternate",
         }}
       />
     </div>
