@@ -7,9 +7,6 @@ import { usePathname } from "next/navigation";
 import { t, type Lang } from "../i18n";
 
 export default function Nav({ locale }: { locale: Lang }) {
-  const pathname = usePathname();
-  const otherLocale = locale === "en" ? "es" : "en";
-  const otherPath = pathname.replace(`/${locale}`, `/${otherLocale}`);
 
   const scrollTo = (selector: string) => {
     const el = document.querySelector(selector);
@@ -104,34 +101,6 @@ export default function Nav({ locale }: { locale: Lang }) {
         />
       </Link>
       <div className="flex items-center" style={{ gap: "clamp(16px,3vw,34px)" }}>
-        <div
-          className="flex items-center gap-2"
-          style={{ fontSize: 12, letterSpacing: "1px" }}
-        >
-          <Link
-            href={locale === "en" ? pathname : otherPath}
-            data-cursor=""
-            className="no-underline"
-            style={{
-              color: locale === "en" ? "#F0F0F0" : "#555",
-              padding: "12px 4px",
-            }}
-          >
-            EN
-          </Link>
-          <span style={{ color: "#333" }}>/</span>
-          <Link
-            href={locale === "es" ? pathname : otherPath}
-            data-cursor=""
-            className="no-underline"
-            style={{
-              color: locale === "es" ? "#F0F0F0" : "#555",
-              padding: "12px 4px",
-            }}
-          >
-            ES
-          </Link>
-        </div>
         <button
           data-magnetic
           data-cursor="contact"

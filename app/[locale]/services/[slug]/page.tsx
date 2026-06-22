@@ -232,7 +232,7 @@ export default async function ServicePage({
 
         <ContactCTA locale={lang} />
       </main>
-      <Footer />
+      <Footer locale={lang} />
       <ServicePageClient />
     </>
   );

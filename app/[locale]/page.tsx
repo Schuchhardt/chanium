@@ -75,7 +75,7 @@ export default async function HomePage({
         <HowWeWork locale={lang} />
         <ContactCTA locale={lang} />
       </main>
-      <Footer />
+      <Footer locale={lang} />
     </>
   );
 }

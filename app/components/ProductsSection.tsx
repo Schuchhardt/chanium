@@ -1,37 +1,41 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { t, type Lang, type DictKey } from "../i18n";
 import SectionGlow from "./SectionGlow";
 
 const products = [
   {
     num: "01",
-    name: "Depando",
-    desc: "p1.desc" as DictKey,
-    badge: "● Live · depando.cl",
-    badgeColor: "#A9C0FF",
-    badgeBorder: "rgba(79,123,255,0.35)",
-    href: "https://depando.cl",
-  },
-  {
-    num: "02",
-    name: "AI Tickets",
-    desc: "p2.desc" as DictKey,
-    badge: "● Live · aitickets.cl",
-    badgeColor: "#A9C0FF",
-    badgeBorder: "rgba(79,123,255,0.35)",
-    href: "https://aitickets.cl",
-  },
-  {
-    num: "03",
     name: "Kefy",
     desc: "p3.desc" as DictKey,
     badge: "○ Building · kefy.app",
     badgeColor: "#8A8F98",
     badgeBorder: "rgba(255,255,255,0.12)",
     href: "https://kefy.app",
+    logo: "/kefy_logo.jpg",
   },
+  {
+    num: "02",
+    name: "Depando",
+    desc: "p1.desc" as DictKey,
+    badge: "● Live · depando.cl",
+    badgeColor: "#A9C0FF",
+    badgeBorder: "rgba(79,123,255,0.35)",
+    href: "https://depando.cl",
+    logo: "/depando_logo.webp",
+  },
+  {
+    num: "03",
+    name: "AI Tickets",
+    desc: "p2.desc" as DictKey,
+    badge: "● Live · aitickets.cl",
+    badgeColor: "#A9C0FF",
+    badgeBorder: "rgba(79,123,255,0.35)",
+    href: "https://aitickets.cl",
+    logo: "/aitickets_logo.png",
+  }
 ] as const;
 
 export default function ProductsSection({ locale }: { locale: Lang }) {
@@ -39,6 +43,8 @@ export default function ProductsSection({ locale }: { locale: Lang }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const [isTouch, setIsTouch] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(0);
+  const scrollTriggerRef = useRef<any>(null);
 
   useEffect(() => {
     setIsTouch(matchMedia("(pointer: coarse)").matches && window.innerWidth < 768);
@@ -60,7 +66,7 @@ export default function ProductsSection({ locale }: { locale: Lang }) {
       const stage = stageRef.current;
       if (track && panel && stage) {
         const getDist = () => Math.max(0, track.scrollWidth - stage.offsetWidth);
-        gsap.to(track, {
+        const animation = gsap.to(track, {
           x: () => -getDist(),
           ease: "none",
           scrollTrigger: {
@@ -73,6 +79,7 @@ export default function ProductsSection({ locale }: { locale: Lang }) {
             anticipatePin: 1,
           },
         });
+        scrollTriggerRef.current = animation.scrollTrigger;
         ScrollTrigger.refresh();
       }
 
@@ -85,6 +92,15 @@ export default function ProductsSection({ locale }: { locale: Lang }) {
 
     return () => { cleanup?.(); };
   }, [isTouch]);
+
+  useEffect(() => {
+    if (imagesLoaded === products.length && scrollTriggerRef.current) {
+      setTimeout(() => {
+        const gsap = require("gsap");
+        gsap.ScrollTrigger?.refresh?.();
+      }, 0);
+    }
+  }, [imagesLoaded]);
 
   const cardStyle = (product: typeof products[number]) => ({
     width: isTouch ? "85vw" : "min(86vw,500px)",
@@ -105,7 +121,7 @@ export default function ProductsSection({ locale }: { locale: Lang }) {
     <section
       ref={productsRef}
       data-products
-      className="relative overflow-hidden"
+      className="relative overflow-visible"
       style={isTouch ? { padding: "clamp(90px,12vh,150px) 0" } : { height: "100vh" }}
       aria-label="Products"
     >
@@ -206,6 +222,35 @@ export default function ProductsSection({ locale }: { locale: Lang }) {
                 </span>
               </div>
               <div>
+                <div
+                  style={{
+                    marginBottom: 24,
+                    height: 60,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor:
+                      product.name === "Depando" || product.name === "AI Tickets"
+                        ? "#f0f0f0"
+                        : "transparent",
+                    borderRadius: 4,
+                    padding: "0 12px",
+                  }}
+                >
+                  <Image
+                    src={product.logo}
+                    alt={product.name}
+                    width={120}
+                    height={60}
+                    style={{
+                      objectFit: "contain",
+                      maxHeight: 60,
+                    }}
+                    onLoadingComplete={() => {
+                      setImagesLoaded((prev) => prev + 1);
+                    }}
+                  />
+                </div>
                 <h3
                   className="m-0 font-bold"
                   style={{
