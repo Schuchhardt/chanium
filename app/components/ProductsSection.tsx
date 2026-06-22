@@ -109,7 +109,7 @@ export default function ProductsSection({ locale }: { locale: Lang }) {
       style={isTouch ? { padding: "clamp(90px,12vh,150px) 0" } : { height: "100vh" }}
       aria-label="Products"
     >
-      <SectionLightfall opacity={0.1} inverted />
+      <SectionLightfall opacity={0.3} inverted />
       <div
         ref={stageRef}
         className={isTouch ? "relative" : "relative h-full flex items-center"}

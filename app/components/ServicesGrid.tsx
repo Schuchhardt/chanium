@@ -86,7 +86,7 @@ export default function ServicesGrid({ locale }: { locale: Lang }) {
       style={{ padding: "clamp(90px,12vh,150px) clamp(20px,5vw,72px)" }}
       aria-label="Services"
     >
-      <SectionLightfall opacity={0.1} />
+      <SectionLightfall opacity={0.3} />
       <div className="relative mx-auto" style={{ maxWidth: 1180 }}>
         <div
           data-reveal

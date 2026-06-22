@@ -51,7 +51,7 @@ export default function StatementSection({ locale }: { locale: Lang }) {
       style={{ padding: "120px clamp(20px,5vw,72px)" }}
       aria-label="Statement"
     >
-      <SectionLightfall opacity={0.12} inverted />
+      <SectionLightfall opacity={0.35} inverted />
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
