@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { t, type Lang } from "../i18n";
 import ContactForm from "./ContactForm";
-import SectionLightfall from "./SectionLightfall";
+import SectionGlow from "./SectionGlow";
 
 export default function ContactCTA({ locale }: { locale: Lang }) {
   const didAnimate = useRef(false);
@@ -41,7 +41,7 @@ export default function ContactCTA({ locale }: { locale: Lang }) {
       style={{ padding: "clamp(90px,12vh,150px) clamp(20px,5vw,72px)" }}
       aria-label="Contact"
     >
-      <SectionLightfall opacity={0.5} inverted />
+      <SectionGlow opacity={0.7} inverted emphasis />
       <div
         className="relative w-full mx-auto grid items-center grid-cols-1 md:grid-cols-[1.1fr_1fr]"
         style={{

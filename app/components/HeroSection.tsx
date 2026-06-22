@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import Lightfall from "./Lightfall";
+import SectionGlow from "./SectionGlow";
 import { t, type Lang } from "../i18n";
 
 export default function HeroSection({ locale }: { locale: Lang }) {
@@ -60,26 +60,7 @@ export default function HeroSection({ locale }: { locale: Lang }) {
       style={{ padding: "140px clamp(20px,5vw,72px) 0" }}
       aria-label="Hero"
     >
-      <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 0 }}>
-        <Lightfall
-          colors={["#4F7BFF", "#1a3a8f", "#7aa0ff"]}
-          backgroundColor="#050510"
-          speed={0.3}
-          streakCount={6}
-          streakWidth={0.8}
-          streakLength={1.2}
-          glow={0.6}
-          density={0.4}
-          twinkle={0.8}
-          zoom={3}
-          backgroundGlow={0.3}
-          opacity={0.45}
-          mouseInteraction={true}
-          mouseStrength={0.4}
-          mouseRadius={0.8}
-          mixBlendMode="screen"
-        />
-      </div>
+      <SectionGlow opacity={0.8} emphasis />
       <Image
         src="/assets/chanium-icon.png"
         alt=""
