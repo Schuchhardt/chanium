@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { t, type Lang } from "../i18n";
 import { services } from "../services-data";
+import SectionLightfall from "./SectionLightfall";
 
 export default function ServicesGrid({ locale }: { locale: Lang }) {
   const didAnimate = useRef(false);
@@ -81,10 +82,12 @@ export default function ServicesGrid({ locale }: { locale: Lang }) {
 
   return (
     <section
+      className="relative overflow-hidden"
       style={{ padding: "clamp(90px,12vh,150px) clamp(20px,5vw,72px)" }}
       aria-label="Services"
     >
-      <div className="mx-auto" style={{ maxWidth: 1180 }}>
+      <SectionLightfall opacity={0.1} />
+      <div className="relative mx-auto" style={{ maxWidth: 1180 }}>
         <div
           data-reveal
           className="flex items-baseline gap-5"

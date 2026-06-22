@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { t, type Lang } from "../i18n";
+import SectionLightfall from "./SectionLightfall";
 
 const phases = [
   { num: "01", title: "ph1.t", desc: "ph1.d" },
@@ -55,10 +56,12 @@ export default function HowWeWork({ locale }: { locale: Lang }) {
 
   return (
     <section
+      className="relative overflow-hidden"
       style={{ padding: "clamp(90px,12vh,150px) clamp(20px,5vw,72px)" }}
       aria-label="How we work"
     >
-      <div className="mx-auto" style={{ maxWidth: 1180 }}>
+      <SectionLightfall opacity={0.08} />
+      <div className="relative mx-auto" style={{ maxWidth: 1180 }}>
         <div
           data-reveal
           className="flex items-baseline gap-5"

@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { t, type Lang } from "../i18n";
+import SectionLightfall from "./SectionLightfall";
 
 export default function StatementSection({ locale }: { locale: Lang }) {
   const didAnimate = useRef(false);
@@ -50,6 +51,7 @@ export default function StatementSection({ locale }: { locale: Lang }) {
       style={{ padding: "120px clamp(20px,5vw,72px)" }}
       aria-label="Statement"
     >
+      <SectionLightfall opacity={0.12} inverted />
       <div
         className="absolute inset-0 pointer-events-none"
         style={{

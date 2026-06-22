@@ -28,11 +28,11 @@ export const dict = {
     "products.sub":
       "Products we designed, shipped and operate — same DNA, same standard.",
     "p1.desc":
-      "A platform that turns scattered operations into one clear, automated workflow.",
+      "A short-term rental platform with AI-powered operations — from pricing to guest comms, fully automated.",
     "p2.desc":
-      "Support that resolves itself — AI triages, answers and escalates only what matters.",
+      "Event ticketing with automated marketing and email campaigns — sell more tickets, zero manual work.",
     "p3.desc":
-      "A smarter layer between your data and the decisions you make every day.",
+      "Automated marketing from creation to publishing and ad management across social media — all in one platform.",
     "how.label": "How we work",
     "ph1.t": "Scope",
     "ph1.d": "We define the outcome before writing a single line of code.",
@@ -152,11 +152,11 @@ export const dict = {
     "products.sub":
       "Productos que diseñamos, lanzamos y operamos — mismo ADN, mismo estándar.",
     "p1.desc":
-      "Una plataforma que convierte operaciones dispersas en un flujo claro y automatizado.",
+      "Una plataforma de arriendos temporales con operaciones potenciadas por IA — desde pricing hasta comunicación con huéspedes, todo automatizado.",
     "p2.desc":
-      "Soporte que se resuelve solo — la IA clasifica, responde y escala solo lo importante.",
+      "Ticketing para eventos con marketing automatizado y campañas de email — vende más tickets, cero trabajo manual.",
     "p3.desc":
-      "Una capa más inteligente entre tus datos y las decisiones que tomas cada día.",
+      "Marketing automatizado desde la creación hasta la publicación y gestión de ads en redes sociales — todo en una plataforma.",
     "how.label": "Cómo trabajamos",
     "ph1.t": "Definir",
     "ph1.d":

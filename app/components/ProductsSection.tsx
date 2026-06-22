@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { t, type Lang, type DictKey } from "../i18n";
+import SectionLightfall from "./SectionLightfall";
 
 const products = [
   {
@@ -108,9 +109,10 @@ export default function ProductsSection({ locale }: { locale: Lang }) {
       style={isTouch ? { padding: "clamp(90px,12vh,150px) 0" } : { height: "100vh" }}
       aria-label="Products"
     >
+      <SectionLightfall opacity={0.1} inverted />
       <div
         ref={stageRef}
-        className={isTouch ? "" : "h-full flex items-center"}
+        className={isTouch ? "relative" : "relative h-full flex items-center"}
       >
         <div
           ref={trackRef}
