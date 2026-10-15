@@ -91,15 +91,17 @@ export function PackageCard({
   pkg,
   variant,
   cta = { label: "Get a quote", href: "/quote" },
+  headingLevel: Heading = "h3",
 }: {
   pkg: Package;
   variant?: string;
   cta?: { label: string; href: string };
+  headingLevel?: "h2" | "h3";
 }) {
   return (
     <Card className="flex h-full flex-col">
       <div className="flex flex-wrap items-center gap-2">
-        <h3 className="text-lg font-bold text-title">{pkg.name}</h3>
+        <Heading className="text-lg font-bold text-title">{pkg.name}</Heading>
         {variant && <Chip tone="accent">{variant}</Chip>}
       </div>
       <p className="mt-3 leading-relaxed text-muted">{pkg.outcome}</p>

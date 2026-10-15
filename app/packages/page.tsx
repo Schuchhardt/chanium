@@ -43,7 +43,7 @@ export default function PackagesPage() {
         <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {listedPackages.map((pkg) => (
             <li key={pkg.slug}>
-              <PackageCard pkg={pkg} cta={packagesPage.cardCta} />
+              <PackageCard pkg={pkg} cta={packagesPage.cardCta} headingLevel="h2" />
             </li>
           ))}
         </ul>

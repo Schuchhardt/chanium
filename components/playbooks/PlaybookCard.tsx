@@ -4,7 +4,13 @@ import { playbooksPage } from "@/content/playbooksPage";
 import { getSegment } from "@/content/segments";
 import { ArrowIcon, Chip } from "../ui";
 
-export function PlaybookCard({ playbook }: { playbook: PlaybookFrontmatter }) {
+export function PlaybookCard({
+  playbook,
+  headingLevel: Heading = "h3",
+}: {
+  playbook: PlaybookFrontmatter;
+  headingLevel?: "h2" | "h3";
+}) {
   return (
     <Link
       href={`/playbooks/${playbook.slug}`}
@@ -19,7 +25,7 @@ export function PlaybookCard({ playbook }: { playbook: PlaybookFrontmatter }) {
             </Chip>
           ))}
       </div>
-      <h3 className="mt-4 text-lg leading-snug font-bold text-title">{playbook.title}</h3>
+      <Heading className="mt-4 text-lg leading-snug font-bold text-title">{playbook.title}</Heading>
       <p className="mt-3 text-sm leading-relaxed text-muted">{playbook.description}</p>
       <span className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-semibold text-accent-soft">
         Read the playbook <ArrowIcon className="transition-transform group-hover:translate-x-1" />

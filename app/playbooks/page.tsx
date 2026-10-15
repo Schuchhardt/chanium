@@ -17,7 +17,7 @@ export const metadata = {
 
 export default function PlaybooksPage() {
   const playbooks = getPlaybooks().map(({ body: _body, ...fm }) => fm);
-  const cards = Object.fromEntries(playbooks.map((p) => [p.slug, <PlaybookCard key={p.slug} playbook={p} />]));
+  const cards = Object.fromEntries(playbooks.map((p) => [p.slug, <PlaybookCard key={p.slug} playbook={p} headingLevel="h2" />]));
   const segs = segments.map((s) => ({ slug: s.slug, name: s.name }));
   return (
     <>
