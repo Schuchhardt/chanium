@@ -1,85 +1,184 @@
 @import "tailwindcss";
 
+/*
+ * Design tokens.
+ * Source of truth until the Claude Design System ships its tokens.css: these values are the
+ * palette the current chanium.com already uses (dark), plus a light counterpart built from the
+ * same hues. When the Design System lands, paste its tokens.css over this :root block and keep
+ * the @theme mapping below — components only reference the semantic names.
+ */
+:root {
+  --ch-bg: #050505;
+  --ch-bg-elevated: #0a0a0a;
+  --ch-card: #0c0d10;
+  --ch-card-hover: #111318;
+  --ch-fg: #f0f0f0;
+  --ch-title: #f4f5f7;
+  --ch-muted: #9aa0a9;
+  --ch-subtle: #7d858f;
+  --ch-border: rgba(255, 255, 255, 0.09);
+  --ch-border-strong: rgba(255, 255, 255, 0.18);
+  --ch-accent: #4f7bff;
+  --ch-accent-solid: #3d67e8;
+  --ch-accent-hover: #2f56d6;
+  --ch-accent-fg: #ffffff;
+  --ch-accent-soft: #a9c0ff;
+  --ch-accent-tint: rgba(79, 123, 255, 0.12);
+  --ch-success: #4ade80;
+  --ch-danger: #ff6b6b;
+  --ch-logo-filter: none;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --ch-bg: #fafafa;
+    --ch-bg-elevated: #ffffff;
+    --ch-card: #ffffff;
+    --ch-card-hover: #f3f5f9;
+    --ch-fg: #15171c;
+    --ch-title: #050505;
+    --ch-muted: #4a515c;
+    --ch-subtle: #5f6670;
+    --ch-border: rgba(5, 5, 5, 0.1);
+    --ch-border-strong: rgba(5, 5, 5, 0.2);
+    --ch-accent: #2f5fe8;
+    --ch-accent-solid: #2f5fe8;
+    --ch-accent-hover: #1f4bd0;
+    --ch-accent-fg: #ffffff;
+    --ch-accent-soft: #2f5fe8;
+    --ch-accent-tint: rgba(47, 95, 232, 0.08);
+    --ch-success: #15803d;
+    --ch-danger: #c62828;
+    --ch-logo-filter: brightness(0.18);
+    color-scheme: light;
+  }
+}
+
 @theme inline {
-  --color-ch-bg: #050505;
-  --color-ch-fg: #F0F0F0;
-  --color-ch-accent: #4F7BFF;
-  --color-ch-accent-light: #A9C0FF;
-  --color-ch-accent-soft: #9FB6FF;
-  --color-ch-muted: #8A8F98;
-  --color-ch-dim: #555;
-  --color-ch-card: #0a0a0a;
-  --color-ch-card-hover: #0f0f12;
-  --color-ch-title: #F4F5F7;
-  --color-ch-number: #3f4650;
-  --color-ch-arrow: #5a626d;
-  --color-ch-marquee: #56606e;
-  --color-ch-label: #C8CDD2;
-  --color-ch-stat-label: #6a727d;
-  --color-ch-stroke: #2a2d34;
-  --color-ch-big-num: #15171c;
+  --color-bg: var(--ch-bg);
+  --color-bg-elevated: var(--ch-bg-elevated);
+  --color-card: var(--ch-card);
+  --color-card-hover: var(--ch-card-hover);
+  --color-fg: var(--ch-fg);
+  --color-title: var(--ch-title);
+  --color-muted: var(--ch-muted);
+  --color-subtle: var(--ch-subtle);
+  --color-line: var(--ch-border);
+  --color-line-strong: var(--ch-border-strong);
+  --color-accent: var(--ch-accent);
+  --color-accent-solid: var(--ch-accent-solid);
+  --color-accent-hover: var(--ch-accent-hover);
+  --color-accent-fg: var(--ch-accent-fg);
+  --color-accent-soft: var(--ch-accent-soft);
+  --color-accent-tint: var(--ch-accent-tint);
+  --color-success: var(--ch-success);
+  --color-danger: var(--ch-danger);
+  --font-display: var(--font-syncopate), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
+html {
+  background: var(--ch-bg);
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 80px;
 }
 
-html, body {
+body {
   margin: 0;
-  padding: 0;
-  background: #050505;
+  background: var(--ch-bg);
+  color: var(--ch-fg);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: #4F7BFF;
-  color: #FFFFFF;
+  background: var(--ch-accent);
+  color: var(--ch-accent-fg);
 }
 
-input, textarea, select, button {
-  font-family: inherit;
+:focus-visible {
+  outline: 2px solid var(--ch-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
-select {
-  appearance: none;
-  -webkit-appearance: none;
+.logo-adaptive {
+  filter: var(--ch-logo-filter);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  body { cursor: none; }
+/* Soft brand glow used behind heroes. Pure CSS, no JS, no layout cost. */
+.hero-glow {
+  background:
+    radial-gradient(60% 50% at 70% 0%, var(--ch-accent-tint), transparent 70%),
+    radial-gradient(40% 40% at 10% 20%, var(--ch-accent-tint), transparent 70%);
 }
 
-@keyframes chMarquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+/* Long-form content (playbooks, legal). */
+.prose-ch {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--ch-fg);
 }
-
-@keyframes chGrain {
-  0% { transform: translate(0, 0); }
-  10% { transform: translate(-5%, -5%); }
-  20% { transform: translate(-10%, 5%); }
-  30% { transform: translate(5%, -10%); }
-  40% { transform: translate(-5%, 12%); }
-  50% { transform: translate(-12%, 5%); }
-  60% { transform: translate(8%, 3%); }
-  70% { transform: translate(3%, 12%); }
-  80% { transform: translate(-8%, -8%); }
-  90% { transform: translate(5%, 8%); }
-  100% { transform: translate(0, 0); }
+.prose-ch > * + * {
+  margin-top: 1.1em;
 }
-
-@keyframes auroraRotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.prose-ch h2 {
+  margin-top: 2.2em;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--ch-title);
 }
-
-@keyframes glowPulse {
-  0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.3; }
-  100% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+.prose-ch h3 {
+  margin-top: 1.8em;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ch-title);
+}
+.prose-ch a {
+  color: var(--ch-accent-soft);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-ch ul,
+.prose-ch ol {
+  padding-left: 1.4em;
+}
+.prose-ch ul {
+  list-style: disc;
+}
+.prose-ch ol {
+  list-style: decimal;
+}
+.prose-ch li + li {
+  margin-top: 0.4em;
+}
+.prose-ch code:not(pre code) {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: var(--ch-accent-tint);
+}
+.prose-ch blockquote {
+  border-left: 2px solid var(--ch-accent);
+  padding-left: 1em;
+  color: var(--ch-muted);
+}
+.prose-ch strong {
+  color: var(--ch-title);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .grain-overlay { animation: none !important; }
-  .marquee-track { animation: none !important; }
-  .glow-aurora, .glow-pulse { animation: none !important; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
