@@ -259,10 +259,7 @@ export function QuoteFlow() {
       className="flex min-h-[calc(100dvh-4rem)] flex-col"
     >
       <div className="mx-auto w-full max-w-2xl flex-1 px-4 pt-8 pb-10 sm:px-6 sm:pt-14">
-        <div className="flex items-center justify-between text-sm text-subtle">
-          <span>{quoteCopy.progress(step, TOTAL)}</span>
-          <span aria-hidden="true">{Math.round(((step - 1) / TOTAL) * 100)}%</span>
-        </div>
+        <p className="text-sm text-subtle">{quoteCopy.progress(step, TOTAL)}</p>
         <div className="mt-3 h-1 overflow-hidden rounded-full bg-line" role="progressbar" aria-valuemin={1} aria-valuemax={TOTAL} aria-valuenow={step} aria-label="Quote progress">
           <div className="h-full bg-accent transition-[width] duration-300" style={{ width: `${(step / TOTAL) * 100}%` }} />
         </div>

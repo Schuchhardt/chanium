@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { segments } from "@/content/segments";
 import { cases } from "@/content/cases";
+import { employees } from "@/content/employees";
 import { absoluteUrl } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -14,6 +15,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     entry("/", 1),
     ...segments.map((s) => entry(`/${s.path}`, 0.9)),
+    entry("/ai-employees", 0.9),
+    ...employees.map((e) => entry(`/ai-employees/${e.slug}`, 0.8)),
     entry("/packages", 0.8),
     entry("/quote", 0.8),
     ...cases.map((c) => entry(`/case-studies/${c.slug}`, 0.7)),
