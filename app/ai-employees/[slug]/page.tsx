@@ -123,8 +123,8 @@ export default async function EmployeePage({ params }: PageProps<"/ai-employees/
               </ButtonLink>
             </Card>
 
-            <Card>
-              <h2 className="text-lg font-bold text-title">{copy.waitlistHeading}</h2>
+            <Card className="scroll-mt-24">
+              <h2 id="waitlist" className="text-lg font-bold text-title">{copy.waitlistHeading}</h2>
               <p className="mt-2 mb-5 text-muted">{copy.waitlistBody}</p>
               <WaitlistForm employeeSlug={e.slug} />
               {count !== null && count > copy.counterThreshold && (

@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { segments } from "@/content/segments";
 import { cases } from "@/content/cases";
 import { employees } from "@/content/employees";
+import { publishedPlaybooks } from "@/lib/playbooks";
 import { absoluteUrl } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -18,6 +19,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/ai-employees", 0.9),
     ...employees.map((e) => entry(`/ai-employees/${e.slug}`, 0.8)),
     entry("/packages", 0.8),
+    entry("/playbooks", 0.8),
+    ...publishedPlaybooks().map((p) => entry(`/playbooks/${p.slug}`, 0.7, p.updatedAt)),
     entry("/quote", 0.8),
     ...cases.map((c) => entry(`/case-studies/${c.slug}`, 0.7)),
     entry("/privacy", 0.2),

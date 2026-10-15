@@ -17,6 +17,8 @@ import {
   SegmentGrid,
 } from "@/components/sections/Blocks";
 import { JsonLd } from "@/components/JsonLd";
+import { PlaybookCard } from "@/components/playbooks/PlaybookCard";
+import { getPlaybooks } from "@/lib/playbooks";
 import { pageMetadata, absoluteUrl } from "@/lib/seo";
 
 export const metadata = pageMetadata({ ...home.seo, path: "/", absoluteTitle: true });
@@ -106,6 +108,26 @@ export default function HomePage() {
         <div className="mt-6">
           <GuaranteePanel heading={home.guarantee.h2} points={home.guarantee.points} />
         </div>
+      </Section>
+
+      <Section>
+        <SectionHeading
+          title={home.playbooks.h2}
+          action={
+            <ButtonLink href={home.playbooks.cta.href} variant="ghost">
+              {home.playbooks.cta.label} →
+            </ButtonLink>
+          }
+        />
+        <ul className="grid gap-4 md:grid-cols-3">
+          {getPlaybooks()
+            .slice(0, 3)
+            .map(({ body: _body, ...p }) => (
+              <li key={p.slug}>
+                <PlaybookCard playbook={p} />
+              </li>
+            ))}
+        </ul>
       </Section>
 
       <Section>

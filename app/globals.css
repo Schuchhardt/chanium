@@ -173,6 +173,32 @@ body {
   color: var(--ch-title);
 }
 
+/* <Steps> in playbooks: an ordered list rendered as numbered cards. */
+.prose-ch .steps-ch ol {
+  list-style: none;
+  padding: 0;
+  counter-reset: step;
+}
+.prose-ch .steps-ch li {
+  position: relative;
+  margin-top: 0.75rem;
+  padding: 1rem 1rem 1rem 3.5rem;
+  border: 1px solid var(--ch-border);
+  border-radius: 0.5rem;
+  background: var(--ch-card);
+  counter-increment: step;
+}
+.prose-ch .steps-ch li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  top: 1.05rem;
+  left: 1rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ch-accent-soft);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
