@@ -1,26 +1,29 @@
 import type { MetadataRoute } from "next";
-import { services } from "./services-data";
+import { segments } from "@/content/segments";
+import { cases } from "@/content/cases";
+import { employees } from "@/content/employees";
+import { publishedPlaybooks } from "@/lib/playbooks";
+import { absoluteUrl } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const locales = ["en", "es"];
-  const urls: MetadataRoute.Sitemap = [];
+  const entry = (path: string, priority: number, lastModified?: string): MetadataRoute.Sitemap[number] => ({
+    url: absoluteUrl(path),
+    changeFrequency: "monthly",
+    priority,
+    ...(lastModified ? { lastModified } : {}),
+  });
 
-  for (const locale of locales) {
-    urls.push({
-      url: `https://chanium.com/${locale}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
-    });
-    for (const svc of services) {
-      urls.push({
-        url: `https://chanium.com/${locale}/services/${svc.slug}`,
-        lastModified: new Date(),
-        changeFrequency: "monthly",
-        priority: 0.8,
-      });
-    }
-  }
-
-  return urls;
+  return [
+    entry("/", 1),
+    ...segments.map((s) => entry(`/${s.path}`, 0.9)),
+    entry("/ai-employees", 0.9),
+    ...employees.map((e) => entry(`/ai-employees/${e.slug}`, 0.8)),
+    entry("/packages", 0.8),
+    entry("/playbooks", 0.8),
+    ...publishedPlaybooks().map((p) => entry(`/playbooks/${p.slug}`, 0.7, p.updatedAt)),
+    entry("/quote", 0.8),
+    ...cases.map((c) => entry(`/case-studies/${c.slug}`, 0.7)),
+    entry("/privacy", 0.2),
+    entry("/terms", 0.2),
+  ];
 }
