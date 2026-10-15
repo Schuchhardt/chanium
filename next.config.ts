@@ -13,6 +13,7 @@ const legacyRedirects = [
 ].map((r) => ({ ...r, statusCode: 301 as const }));
 
 const nextConfig: NextConfig = {
+  serverExternalPackages: ["@react-pdf/renderer"],
   async redirects() {
     return legacyRedirects;
   },

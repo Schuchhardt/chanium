@@ -137,8 +137,8 @@ export const quoteCopy = {
   },
   summary: {
     edit: "Edit",
-    consent:
-      "I agree to receive my proposal and related follow-up from Chanium by email. See the privacy policy.",
+    consent: "I agree to receive my proposal and related follow-up from Chanium by email.",
+    privacyLink: "See the privacy policy.",
   },
   thanks: {
     seo: { title: "Your proposal is on its way" },
