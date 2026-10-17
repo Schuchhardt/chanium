@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { cases, getCase } from "@/content/cases";
 import { getSegment } from "@/content/segments";
 import { home } from "@/content/home";
-import { ButtonLink, Chip, Container, Eyebrow, H1, Section } from "@/components/ui";
+import { ButtonLink, Chip, Container, Eyebrow, H1, Photo, Section } from "@/components/ui";
 import { FinalCta } from "@/components/sections/Blocks";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata, absoluteUrl } from "@/lib/seo";
@@ -51,11 +51,12 @@ export default async function CaseStudyPage({ params }: PageProps<"/case-studies
               </li>
             ))}
           </ul>
+          <Photo still={study.image} priority sizes="(min-width: 1280px) 1200px, 100vw" className="mt-14 aspect-[16/9] rounded-[20px] sm:mt-20" />
         </Container>
       </section>
       <Section className="pt-4! sm:pt-8!">
         <h2 className="sr-only">Before and after</h2>
-        <div className="overflow-hidden rounded-xl border border-line">
+        <div className="overflow-hidden rounded-[20px] border border-line">
           <div className="hidden grid-cols-[1fr_1.4fr_1.4fr] border-b border-line bg-bg-elevated px-6 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-subtle md:grid">
             <span>Area</span>
             <span>Before</span>

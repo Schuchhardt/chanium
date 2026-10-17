@@ -34,7 +34,7 @@ export function WaitlistForm({ employeeSlug }: { employeeSlug: string }) {
 
   if (status === "done") {
     return (
-      <p role="status" className="rounded-md border border-accent/40 bg-accent-tint px-4 py-3 text-title">
+      <p role="status" className="rounded-full border border-accent/40 bg-accent-tint px-4 py-3 text-title">
         {copy.waitlistSuccess}
       </p>
     );
@@ -53,13 +53,13 @@ export function WaitlistForm({ employeeSlug }: { employeeSlug: string }) {
           required
           autoComplete="email"
           placeholder="you@company.com"
-          className="block min-h-12 w-full rounded-md border border-line-strong bg-card px-3.5 text-base text-title placeholder:text-subtle focus:border-accent focus:outline-none"
+          className="block min-h-12 w-full rounded-[6px] border border-line-strong bg-card px-3.5 text-base text-title placeholder:text-subtle focus:border-accent focus:outline-none"
         />
       </label>
       <button
         type="submit"
         disabled={status === "sending"}
-        className="min-h-12 rounded-md border border-line-strong px-5 font-semibold text-title transition-colors hover:border-accent disabled:opacity-60"
+        className="min-h-12 rounded-full border border-line-strong px-5 font-medium text-title transition-colors hover:border-accent disabled:opacity-60"
       >
         {status === "sending" ? "Joining…" : copy.waitlistCta}
       </button>

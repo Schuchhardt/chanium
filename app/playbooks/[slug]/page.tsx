@@ -68,7 +68,7 @@ export default async function PlaybookPage({ params }: PageProps<"/playbooks/[sl
                   </Chip>
                 ))}
               </div>
-              <h1 className="mt-5 text-3xl leading-tight font-bold text-title text-balance sm:text-4xl">{p.title}</h1>
+              <h1 className="mt-5 font-display text-[2.6rem] leading-[1.02] tracking-[-0.015em] text-title text-balance sm:text-6xl">{p.title}</h1>
               <p className="mt-4 text-lg leading-relaxed text-muted">{p.description}</p>
               <p className="mt-4 text-sm text-subtle">
                 Updated <time dateTime={p.updatedAt}>{fmtDate(p.updatedAt)}</time>
@@ -82,7 +82,7 @@ export default async function PlaybookPage({ params }: PageProps<"/playbooks/[sl
               <MDXRemote source={p.body} components={mdxComponents(p.slug)} />
             </div>
             <section className="mt-14 rounded-2xl border border-line p-6 hero-glow sm:p-10">
-              <h2 className="font-display text-xl font-bold text-title sm:text-2xl">{playbooksPage.endCta.heading}</h2>
+              <h2 className="font-display text-3xl text-title sm:text-4xl">{playbooksPage.endCta.heading}</h2>
               <p className="mt-3 text-muted">{playbooksPage.endCta.body}</p>
               <ButtonLink href={quoteHref} className="mt-6">
                 {playbooksPage.endCta.quote}

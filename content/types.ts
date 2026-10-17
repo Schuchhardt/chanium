@@ -3,6 +3,8 @@
  * segments, employees, packages, cases and playbooks can be added without touching layout.
  */
 
+import type { FilmKey, StillKey } from "./media";
+
 export type SegmentSlug = "str" | "pm" | "sales" | "luxury";
 export type QuoteSegment = SegmentSlug | "other";
 
@@ -27,6 +29,8 @@ export interface Segment {
   packagesHeading: string;
   packages: { slug: string; variant?: string }[];
   caseStudy?: string;
+  /** Hero still (and optional film over it), plus the still used on the segment card. */
+  media: { still: StillKey; film?: FilmKey; card: StillKey };
   seo: { title: string; description: string; keywords: string[] };
 }
 
@@ -71,6 +75,7 @@ export interface CaseStudy {
   rows: { area: string; before: string; after: string }[];
   stack: string[];
   link?: Cta;
+  image: StillKey;
   seo: { title: string; description: string };
 }
 

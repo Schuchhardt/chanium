@@ -14,6 +14,11 @@ const legacyRedirects = [
 
 const nextConfig: NextConfig = {
   serverExternalPackages: ["@react-pdf/renderer"],
+  images: {
+    // Higgsfield CDN (content/media.ts). Drop once media is self-hosted under /public/media.
+    remotePatterns: [{ protocol: "https", hostname: "d8j0ntlcm91z4.cloudfront.net" }],
+    formats: ["image/avif", "image/webp"],
+  },
   async redirects() {
     return legacyRedirects;
   },

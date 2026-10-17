@@ -23,6 +23,7 @@ export const segments: Segment[] = [
     packagesHeading: "The package",
     packages: [{ slug: "str-operations-autopilot" }],
     caseStudy: "depando",
+    media: { still: "strVilla", film: "strVilla", card: "strVilla" },
     seo: {
       title: "Short-term rental automation — AI operations for STR managers",
       description:
@@ -56,6 +57,7 @@ export const segments: Segment[] = [
     employees: ["maintenance-dispatcher", "leasing-assistant"],
     packagesHeading: "The package",
     packages: [{ slug: "pm-operations-autopilot" }],
+    media: { still: "pmBuilding", card: "pmBuilding" },
     seo: {
       title: "Property management AI — maintenance, leasing and tenant comms on autopilot",
       description:
@@ -90,6 +92,7 @@ export const segments: Segment[] = [
     packagesHeading: "The packages",
     packages: [{ slug: "lead-response-engine" }, { slug: "deal-pipeline-on-autopilot" }],
     caseStudy: "residential-brokerage",
+    media: { still: "salesHome", card: "salesHome" },
     seo: {
       title: "Real estate AI automation for sales teams — lead response and deal tracking",
       description:
@@ -123,6 +126,7 @@ export const segments: Segment[] = [
     employees: ["lead-responder", "listing-marketer"],
     packagesHeading: "The package",
     packages: [{ slug: "lead-response-engine", variant: "Luxury variant" }],
+    media: { still: "luxuryHills", film: "luxuryHills", card: "luxuryHills" },
     seo: {
       title: "AI for luxury real estate — concierge-level client follow-up",
       description:

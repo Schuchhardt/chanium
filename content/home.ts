@@ -10,6 +10,8 @@ export const home = {
   hero: {
     eyebrow: "Fixed price · Fixed date · You own the code",
     h1: "AI operations for real estate teams.",
+    /** Words of h1 set in the italic serif accent. */
+    accent: "real estate",
     subline:
       "We connect your CRM, your transaction tools and your messaging into one system that runs itself — built in weeks at a fixed price, and you own all of it.",
     primary: { label: "Get a fixed quote", href: "/quote" },
@@ -25,22 +27,34 @@ export const home = {
     label: "Works with the tools you already run",
   },
   segments: {
+    eyebrow: "Who we build for",
+    accent: "actually operates",
     h2: "Built for how your business actually operates",
   },
   employees: {
+    eyebrow: "The catalog",
     h2: "Meet your AI Employees",
+    accent: "AI Employees",
     subline:
       "Specialized agents that do one job in your business, end to end. We build them for you today; hire them yourself soon.",
     cta: { label: "See all AI Employees", href: "/ai-employees" },
   },
   cases: {
+    eyebrow: "Case studies",
     h2: "What this looks like in production",
+    accent: "in production",
+  },
+  statement: {
+    line: "Your team sells homes. The busywork runs itself.",
+    by: "Built in weeks · Owned by you",
   },
   packages: {
+    eyebrow: "Packages",
     h2: "Fixed scope. Fixed price. Fixed date.",
     cta: { label: "Compare packages", href: "/packages" },
   },
   process: {
+    eyebrow: "Process",
     h2: "How it works",
     steps: [
       {
@@ -66,7 +80,9 @@ export const home = {
     ],
   },
   playbooks: {
+    eyebrow: "Playbooks",
     h2: "Playbooks: do it yourself, or let us",
+    accent: "or let us",
     cta: { label: "All playbooks", href: "/playbooks" },
   },
   finalCta: {
