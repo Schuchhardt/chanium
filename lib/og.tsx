@@ -28,10 +28,10 @@ export async function renderOg({ title, eyebrow }: { title: string; eyebrow?: st
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px 80px",
-          background: "#050505",
+          background: "#141414",
           backgroundImage:
-            "radial-gradient(circle at 85% 0%, rgba(79,123,255,0.35), transparent 55%), radial-gradient(circle at 0% 100%, rgba(79,123,255,0.18), transparent 50%)",
-          color: "#F4F5F7",
+            "radial-gradient(circle at 85% 0%, rgba(232,89,12,0.35), transparent 55%), radial-gradient(circle at 0% 100%, rgba(232,89,12,0.16), transparent 50%)",
+          color: "#F4F3EF",
           fontFamily: "sans-serif",
         }}
       >
@@ -42,7 +42,7 @@ export async function renderOg({ title, eyebrow }: { title: string; eyebrow?: st
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           {eyebrow && (
-            <div style={{ fontSize: 26, letterSpacing: 4, textTransform: "uppercase", color: "#A9C0FF" }}>
+            <div style={{ fontSize: 26, letterSpacing: 4, textTransform: "uppercase", color: "#FF8A4C" }}>
               {eyebrow}
             </div>
           )}

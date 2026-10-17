@@ -56,6 +56,23 @@ Preview the PDF layout locally at `/api/dev/proposal-pdf` (404 in production).
 4. Optional: create an Upstash Redis database for cross-instance rate limiting.
 5. Submit a real quote from a phone and confirm the PDF and internal brief arrive within 5 minutes.
 
-## Design tokens
+## Design system
 
-`app/globals.css` holds the tokens (`:root` dark, `prefers-color-scheme: light` override) and the Tailwind v4 `@theme` mapping. When the Claude Design System's `tokens.css` is ready, paste it over the `:root` blocks; components only use the semantic names (`bg`, `fg`, `muted`, `accent`, …). Tailwind v4 has no `tailwind.config.ts` — the `@theme` block is the mapping.
+`app/globals.css` holds the tokens from the Chanium Real Estate Design System brief: light warm off-white is primary (`--bg #FAFAF8`, `--ink #141414`, `--accent #E8590C`), dark is the `prefers-color-scheme: dark` override. The Tailwind v4 `@theme` block maps them to semantic names (`bg`, `fg`, `title`, `muted`, `line`, `accent`, …) — Tailwind v4 has no `tailwind.config.ts`.
+
+| Role | Font |
+| --- | --- |
+| Display (headlines, italic accents) | Instrument Serif |
+| Body / UI | Inter |
+| Metrics, labels, prices | JetBrains Mono |
+
+Motion lives in `components/motion.tsx` and the `/* motion */` block of `globals.css`: Lenis smooth scroll, word-by-word headline reveals (`SplitText`), fade/curtain reveals (`Reveal`), scroll parallax, count-up metrics, an integrations marquee and muted ambient films that only play on screen. Everything is off under `prefers-reduced-motion`.
+
+## Media
+
+Stills (GPT Image 2.5) and films (Seedance 2.5, image-to-video, re-encoded to H.264 ~1–2 MB) were generated with Higgsfield and are listed in `content/media.ts`. They load from the Higgsfield CDN by default (stills via `next/image`, allowed in `next.config.ts`). To self-host:
+
+```bash
+pnpm media:pull                 # downloads everything into public/media
+NEXT_PUBLIC_MEDIA_LOCAL=1       # set on Vercel / .env.local
+```

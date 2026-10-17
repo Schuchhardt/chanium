@@ -10,6 +10,7 @@ export const cases: CaseStudy[] = [
     client: "Depando",
     named: true,
     segment: "str",
+    image: "suite",
     title: "Short-term rental operations, fully automated",
     summary:
       "Depando runs a short-term rental portfolio where guest messaging, cleaning coordination and owner reporting run on one automated system instead of a team's inbox.",
@@ -43,6 +44,7 @@ export const cases: CaseStudy[] = [
     client: "US residential brokerage",
     named: false,
     segment: "sales",
+    image: "kitchen",
     title: "One operating system for a 40-agent brokerage",
     summary:
       "A 40-agent residential brokerage ran on Follow Up Boss, Dotloop and SkySlope — three tools that never agreed. We unified them into one operating system for deals, dates and coordinators.",

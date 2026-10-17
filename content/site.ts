@@ -26,6 +26,8 @@ export const nav: Cta[] = [
 ];
 
 export const footer = {
+  statement: "Built in weeks. Owned by you.",
+  statementAccent: "Owned by you.",
   blurb: "AI operations for real estate teams. Fixed scope, fixed price, fixed date — and you own all of it.",
   columns: [
     {

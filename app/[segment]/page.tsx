@@ -4,12 +4,16 @@ import { getEmployee } from "@/content/employees";
 import { getPackage } from "@/content/packages";
 import { getCase } from "@/content/cases";
 import { home } from "@/content/home";
-import { ButtonLink, Container, Eyebrow, H1, Section, SectionHeading } from "@/components/ui";
+import type { CSSProperties } from "react";
+import { ArrowIcon, ButtonLink, Section, SectionHeading } from "@/components/ui";
+import { SplitText } from "@/components/motion";
 import {
   CaseStudyCard,
   EmployeeGrid,
   FinalCta,
   GuaranteePanel,
+  IntegrationRail,
+  MediaHero,
   PackageGrid,
   PainList,
   ProcessSteps,
@@ -53,51 +57,69 @@ export default async function SegmentPage({ params }: PageProps<"/[segment]">) {
           url: absoluteUrl(`/${segment.path}`),
         }}
       />
-      <section className="hero-glow">
-        <Container className="pt-16 pb-14 sm:pt-28 sm:pb-20">
-          <Eyebrow>{segment.name}</Eyebrow>
-          <H1 className="mt-5 max-w-4xl">{segment.hero.h1}</H1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{segment.hero.subline}</p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href={quoteHref}>{home.hero.primary.label}</ButtonLink>
-            <ButtonLink href="/ai-employees" variant="secondary">
+      <MediaHero still={segment.media.still} film={segment.media.film} tall={false}>
+        <p className="fade-up flex items-center gap-3 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-white/75" style={{ "--d": "300ms" } as CSSProperties}>
+          <span aria-hidden="true" className="h-px w-8 bg-accent" />
+          {segment.name}
+        </p>
+        <SplitText
+          as="h1"
+          text={segment.hero.h1}
+          immediate
+          delay={350}
+          className="mt-6 max-w-5xl font-display text-[2.8rem] leading-[0.98] tracking-[-0.02em] text-balance sm:text-7xl lg:text-[6.5rem]"
+        />
+        <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+          <p className="fade-up max-w-xl text-lg leading-relaxed text-white/80" style={{ "--d": "800ms" } as CSSProperties}>
+            {segment.hero.subline}
+          </p>
+          <div className="fade-up flex flex-col gap-3 sm:flex-row" style={{ "--d": "950ms" } as CSSProperties}>
+            <ButtonLink href={quoteHref}>
+              {home.hero.primary.label}
+              <ArrowIcon className="transition-transform duration-300 group-hover/btn:translate-x-1" />
+            </ButtonLink>
+            <ButtonLink href="/ai-employees" variant="light">
               {home.hero.secondary.label}
             </ButtonLink>
           </div>
-        </Container>
-      </section>
+        </div>
+      </MediaHero>
 
       <Section>
-        <SectionHeading title={segment.painsHeading} />
+        <SectionHeading eyebrow="What breaks at scale" title={segment.painsHeading} />
         <PainList pains={segment.pains} />
       </Section>
 
       <Section>
-        <SectionHeading title={segment.employeesHeading} />
+        <SectionHeading eyebrow="AI Employees" title={segment.employeesHeading} />
         <EmployeeGrid employees={employees} />
       </Section>
 
       <Section>
-        <SectionHeading title={segment.packagesHeading} />
+        <SectionHeading eyebrow="Fixed price" title={segment.packagesHeading} />
         <PackageGrid packages={packages} />
       </Section>
 
       {study && (
         <Section>
-          <SectionHeading title={home.cases.h2} />
-          <div className="max-w-2xl">
+          <SectionHeading eyebrow={home.cases.eyebrow} title={home.cases.h2} accent={home.cases.accent} />
+          <div className="max-w-3xl">
             <CaseStudyCard study={study} />
           </div>
         </Section>
       )}
 
       <Section>
-        <SectionHeading title={home.process.h2} />
+        <SectionHeading eyebrow={home.process.eyebrow} title={home.process.h2} />
         <ProcessSteps steps={home.process.steps} />
-        <div className="mt-6">
+        <div className="mt-16 sm:mt-24">
           <GuaranteePanel heading={home.guarantee.h2} points={home.guarantee.points} />
         </div>
       </Section>
+
+      <section className="pb-8" aria-label="Integrations">
+        <IntegrationRail label={home.integrations.label} />
+      </section>
 
       <Section>
         <FinalCta heading={home.finalCta.h2} body={home.finalCta.body} cta={{ ...home.finalCta.primary, href: quoteHref }} />

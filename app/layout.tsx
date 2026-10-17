@@ -1,19 +1,23 @@
 import type { Metadata, Viewport } from "next";
-import { Syncopate } from "next/font/google";
+import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { StickyCta } from "@/components/StickyCta";
 import { UtmCapture } from "@/components/UtmCapture";
+import { SmoothScroll } from "@/components/motion";
 import { site } from "@/content/site";
 import "./globals.css";
 
-const syncopate = Syncopate({
-  variable: "--font-syncopate",
+const serif = Instrument_Serif({
+  variable: "--font-serif",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: "400",
+  style: ["normal", "italic"],
   display: "swap",
 });
+const inter = Inter({ variable: "--font-inter", subsets: ["latin"], display: "swap" });
+const mono = JetBrains_Mono({ variable: "--font-jetbrains", subsets: ["latin"], weight: ["400", "500"], display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -37,20 +41,21 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#050505" },
-    { media: "(prefers-color-scheme: light)", color: "#fafafa" },
+    { media: "(prefers-color-scheme: light)", color: "#fafaf8" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f0f0e" },
   ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={syncopate.variable}>
+    <html lang="en" className={`${serif.variable} ${inter.variable} ${mono.variable}`}>
       <body className="min-h-dvh bg-bg text-fg antialiased">
         <Nav />
-        <main id="main">{children}</main>
+        <main id="main" className="pt-[88px]">{children}</main>
         <Footer />
         <StickyCta />
         <UtmCapture />
+        <SmoothScroll />
         <Analytics />
       </body>
     </html>

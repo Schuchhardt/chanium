@@ -14,7 +14,7 @@ export function PlaybookCard({
   return (
     <Link
       href={`/playbooks/${playbook.slug}`}
-      className="group flex h-full flex-col rounded-xl border border-line bg-card p-6 transition-colors hover:border-accent/60 hover:bg-card-hover"
+      className="group flex h-full flex-col rounded-[12px] border border-line bg-card p-6 transition-[border-color,box-shadow,transform] duration-500 hover:-translate-y-1 hover:border-line-strong hover:shadow-elevated sm:p-8"
     >
       <div className="flex flex-wrap gap-2">
         {playbook.draft && <Chip tone="muted">{playbooksPage.draftLabel}</Chip>}
@@ -25,10 +25,11 @@ export function PlaybookCard({
             </Chip>
           ))}
       </div>
-      <Heading className="mt-4 text-lg leading-snug font-bold text-title">{playbook.title}</Heading>
+      <Heading className="mt-5 font-display text-[1.7rem] leading-[1.1] text-title">{playbook.title}</Heading>
       <p className="mt-3 text-sm leading-relaxed text-muted">{playbook.description}</p>
-      <span className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-semibold text-accent-soft">
-        Read the playbook <ArrowIcon className="transition-transform group-hover:translate-x-1" />
+      <span className="mt-auto inline-flex items-center gap-2 pt-8 text-sm font-medium text-title">
+        <span className="link-draw">Read the playbook</span>
+        <ArrowIcon className="text-accent transition-transform duration-500 group-hover:translate-x-1" />
       </span>
     </Link>
   );

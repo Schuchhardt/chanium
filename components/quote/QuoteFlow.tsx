@@ -256,7 +256,7 @@ export function QuoteFlow() {
         e.preventDefault();
         next();
       }}
-      className="flex min-h-[calc(100dvh-4rem)] flex-col"
+      className="flex min-h-[calc(100dvh-88px)] flex-col"
     >
       <div className="mx-auto w-full max-w-2xl flex-1 px-4 pt-8 pb-10 sm:px-6 sm:pt-14">
         <p className="text-sm text-subtle">{quoteCopy.progress(step, TOTAL)}</p>
@@ -264,7 +264,7 @@ export function QuoteFlow() {
           <div className="h-full bg-accent transition-[width] duration-300" style={{ width: `${(step / TOTAL) * 100}%` }} />
         </div>
 
-        <h1 ref={headingRef} tabIndex={-1} className="mt-10 text-2xl leading-tight font-bold text-title outline-none sm:text-3xl">
+        <h1 ref={headingRef} tabIndex={-1} className="mt-10 font-display text-4xl leading-[1.05] text-title outline-none sm:text-5xl">
           {copy.title}
         </h1>
         <p className="mt-2 text-muted">{copy.help}</p>
@@ -344,14 +344,14 @@ export function QuoteFlow() {
       <div className="sticky bottom-0 z-40 border-t border-line bg-bg/95 backdrop-blur-md">
         <div className="mx-auto flex max-w-2xl items-center gap-3 px-4 py-3 sm:px-6">
           {step > 1 && (
-            <button type="button" onClick={() => goTo(step - 1)} className="min-h-12 rounded-md border border-line-strong px-5 font-semibold text-fg hover:border-accent">
+            <button type="button" onClick={() => goTo(step - 1)} className="min-h-12 rounded-full border border-line-strong px-5 font-medium text-fg hover:border-accent">
               {quoteCopy.back}
             </button>
           )}
           <button
             type="submit"
             disabled={submitting}
-            className="min-h-12 flex-1 rounded-md bg-accent-solid px-5 font-semibold text-accent-fg transition-colors hover:bg-accent-hover disabled:opacity-60"
+            className="min-h-12 flex-1 rounded-full bg-accent-solid px-5 font-medium text-accent-fg transition-colors hover:bg-accent-hover disabled:opacity-60"
           >
             {step === TOTAL ? (submitting ? quoteCopy.submitting : quoteCopy.submit) : quoteCopy.next}
           </button>
@@ -382,7 +382,7 @@ function Choices({
           <label
             key={o.id}
             className={cx(
-              "flex min-h-14 cursor-pointer items-center gap-3 rounded-lg border px-4 text-base transition-colors has-focus-visible:outline-2 has-focus-visible:outline-accent",
+              "flex min-h-14 cursor-pointer items-center gap-3 rounded-[12px] border px-4 text-base transition-colors has-focus-visible:outline-2 has-focus-visible:outline-accent",
               checked ? "border-accent bg-accent-tint text-title" : "border-line-strong bg-card text-fg hover:border-accent/60",
             )}
           >
@@ -434,7 +434,7 @@ function ChipGroup({
 }
 
 const inputClass =
-  "mt-2 block min-h-12 w-full rounded-md border border-line-strong bg-card px-3.5 text-base text-title placeholder:text-subtle focus:border-accent focus:outline-none";
+  "mt-2 block min-h-12 w-full rounded-[6px] border border-line-strong bg-card px-3.5 text-base text-title placeholder:text-subtle focus:border-accent focus:outline-none";
 
 function Field({ label, children, required }: { label: string; children: ReactNode; required?: boolean }) {
   return (
@@ -534,7 +534,7 @@ function Summary({ state, onEdit, onConsent }: { state: FormState; onEdit: (step
   );
   return (
     <>
-      <dl className="divide-y divide-line rounded-xl border border-line bg-card">
+      <dl className="divide-y divide-line rounded-[12px] border border-line bg-card">
         {rows.map((r) => (
           <div key={r.step} className="flex items-start justify-between gap-4 px-4 py-4 sm:px-5">
             <div className="min-w-0">
